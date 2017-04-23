@@ -28,17 +28,11 @@ looprow:
     cmp r7, r0
     bge done
     mov r8, #0
-looprowx:
-    add r7, r7, #1
-    b looprow
 loopcol:
     cmp r8, r4
     bge looprowx
     mov r3, #0
     mov r9, #0
-loopcolx:
-    add r8, r8, #1
-    b loopcol
 loopnum:
     cmp r9, r1
     bge write
@@ -58,12 +52,16 @@ loopnum:
 
     add r9, r9, #1
     b loopnum
-
+looprowx:
+    add r7, r7, #1
+    b looprow
+loopcolx:
+    add r8, r8, #1
+    b loopcol
 write:
     str r3, [r6, r10]
     add r10, r10, #4
     b loopcolx
-
 done:
     mov r1, r6
     pop {r12}
