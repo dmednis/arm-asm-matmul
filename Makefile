@@ -1,5 +1,7 @@
 TARGET := md2
 
+QEMU = qemu-arm
+
 OBJ := $(TARGET)_main.o $(TARGET).o
 
 ASFLAGS = -mcpu=xscale -alh=$*.lis -L
@@ -12,7 +14,10 @@ AS := arm-linux-gnueabi-as
 .PHONY: test all clean distclean
 
 test:	all
-	qemu-arm $(TARGET) < mx23.txt
+	qemu-arm md2 < mx23.txt
+	qemu-arm md2 < mx11.txt
+	qemu-arm md2 < mxbig.txt
+	qemu-arm md2 < mxof.txt
 
 
 all:	$(TARGET)
